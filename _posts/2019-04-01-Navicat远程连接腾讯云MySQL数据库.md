@@ -18,27 +18,23 @@ tags:
 ## 一、远程登录授权
 - 登录
 `mysql -u root -p`
-- 授予全部权限 给 所有库的所有表 用户名为root 密码为123456  
-`mysql > grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;`  
-'123456'为自己数据库登陆密码  
+- 授予全部权限 给 所有库的所有表 用户名为USER 密码为YOUR PASSWORD 
+`mysql> grant all privileges on *.* to 'USER'@'%' identified by 'YOUR PASSWORD' with grant option;`  
+'YOUR PASSWORD'为自己数据库登陆密码  
 - 创建有权通过SSL访问MySQL服务器的用户  
-`GRANT ALL PRIVILEGES ON *.* TO 'ssluser'@'%' IDENTIFIED BY 'qazwsx123' REQUIRE SSL;`  
+`GRANT ALL PRIVILEGES ON *.* TO 'SSLUSER'@'%' IDENTIFIED BY 'YOUR PASSWORD' REQUIRE SSL;`  
 - 刷新MySQL的系统权限相关表，在不重启MySQL服务的情况下直接生效  
-`mysql>flush privileges;`  
+`mysql> flush privileges;`  
 - 查看修改权限后的user表 ，有host为%，user为root，表示修改成功。  
 `mysql> select host,user from user;`  
 
+
 命令解释:
- - `*.*`       
-第一个`*`表示库，第二个`*`表示表; `*.*`对全部数据库的全部表授权，`so.ok` 表示只对so这个库中的ok表授权  
-- `root`
-表示要给哪个用户授权，这个用户可以是存在的用户，也可以是不存在的  
- - `'%'`      
-表示允许远程连接的IP地址，`%`代表允许所有IP连接  
- - `'root'`  
-是设置授权用户的连接密码  
- - `flush privileges;`  
-代表立即刷新权限表，使添加的用户生效  
+
+- `*.*` 第一个`*`表示库，第二个`*`表示表; `*.*`对全部数据库的全部表授权，`so.ok` 表示只对so这个库中的ok表授权
+- `USER` 表示要给哪个用户授权，这个用户可以是存在的用户，也可以是不存在的
+- `'%'` 表示允许远程连接的IP地址，`%`代表允许所有IP连接
+- `'YOUR PASSWORD'`是设置授权用户的连接密码
 
 ## 二、 解绑3306端口绑定的IP地址
 - 查看3306端口是否状态  
