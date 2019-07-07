@@ -1,14 +1,15 @@
 ---
 layout: post
-title: "「数据分析」Module 01: Data Wrangling Template"
+title: "「数据争论」Module 01: Data Wrangling Template"
 subtitle: 'Data Analysis : Data Wrangling'
 author: "Hufe"
-header-img: "img/post-bg-dataset.jpg"
+header-img: "img/post-bg-datas.jpg"
 header-mask: 0.3
 mathjax: true
 tags:
   - Python
   - Data Analysis
+  - Data Wrangling
 ---
 
 # Data Wrangling Template
@@ -476,3 +477,6 @@ df.StartDate.value_counts().plot(kind= "pie", labels = labels)
 
 ![title](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/gitnote/2019/04/21/output_36_1-1555850922177.png)
 
+
+
+[Jupyter Notebook](https://nbviewer.jupyter.org/github/hufe09/pydata_practice/blob/master/data_wrangling/data_wrangling_template.ipynb)

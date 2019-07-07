@@ -1,24 +1,47 @@
 ---
 layout: post
-title: "「数据分析」Module 03: Assessing Data"
-subtitle: 'Data Analysis : Data Wrangling'
+title: "「数据争论」Module 03: Assessing Data"
+subtitle: '比较新口服胰岛素治疗糖尿病和注射胰岛素的有效性和安全性--评估'
 author: "Hufe"
-header-img: "img/post-bg-python.jpg"
+header-img: "img/post-bg-datas.jpg"
 header-mask: 0.3
 mathjax: true
 tags:
   - Python
   - Data Analysis
+  - Data Wrangling
 ---
 
-# Assessing
+
+
+## Assessing
+## 评估数据
+
+**评估**数据是数据争论的第二步。在评估时，就像工作中的侦探，检查数据集有两件事：
+
+- 数据质量问题（*即内容问题*）
+- 数据整洁问题（*即结构问题*）
+
+## 数据集介绍
+>PS：此数据不是“真实的”
+
+Auralin和Novodra **不是**真正的胰岛素产品。该临床试验数据是为了本此分析而制作的。在评估此数据时，将检测到（以及稍后清理）的问题旨在模拟真实世界的数据质量和整洁问题。
+
+
+
+- 该数据集是在真实医生的咨询下构建的，以确保合理性。
+- 这种替代胰岛素的临床试验数据受到启发，并且与[一种名为Afrezza的新吸入式胰岛素](http://care.diabetesjournals.org/content/38/12/2266.long)的真实临床试验密切相关。
+- 此数据集中的数据质量问题模拟[医疗保健数据中](http://media.hypersites.com/clients/1446/filemanager/Articles/DocCenter_Problem_with_data.pdf)常见的实际数据质量问题。这些问题会影响护理质量，患者登记和收入。
+- 此数据集中的患者是使用此[假名称生成器](http://www.fakenamegenerator.com/order.php)创建的，不包括真实姓名，地址，电话号码，电子邮件等。
 
 ## Gather
 
 
 ```python
-import pandas as pd
 import numpy as np
+import pandas as pd
+pd.set_option('display.max_columns', 100)  # 设置显示数据的最大列数，防止出现省略号…，导致数据显示不全
+pd.set_option('expand_frame_repr', False)  # 当列太多时不自动换行
 ```
 
 
@@ -30,8 +53,11 @@ adverse_reactions = pd.read_csv('adverse_reactions.csv')
 
 ## Assess
 
+- ### patients/病人 表
+
 
 ```python
+#显示前5行
 patients.head()
 ```
 
@@ -39,19 +65,6 @@ patients.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -164,8 +177,25 @@ patients.head()
 
 
 
+`patients` 列:
+- **patient_id**: 生产Auralin的制药公司的[主患者指数](https://en.wikipedia.org/wiki/Enterprise_master_patient_index)（即患者数据库）中每位患者的唯一标识符
+- **assigned_sex**: 出生时每位患者的指定性别（男性或女性）
+- **given_name**: 每个患者的名字
+- **surname**: 每位患者的姓氏
+- **address**: 每位患者的主要地址
+- **city**: 每个病人主要地址的相应城市
+- **state**: 每个患者主要地址的对应状态
+- **zip_code**: 每个患者主要地址的相应邮政编码
+- **country**: 每个患者主要地址的相应国家（本次临床试验的所有美国）
+- **contact**: 每位患者的电话号码和电子邮件信息
+- **birthdate**: 每位患者的出生日期（月/日/年）。该临床试验的纳入标准是年龄>=18 （没有最大年龄，因为糖尿病是老年人群中日益严重的问题）
+- **weight**: 每位患者的体重（lbns/ 磅）
+- **height**: 每位患者的身高（in/ 英寸）
+- **bmi**: 每位患者的体重指数（BMI）。BMI是一个使用人的身高和体重的简单计算。公式为BMI = kg/m<sup>2</sup>，其中kg是一个人的体重（千克），m<sup>2</sup>是他们的身高（米）。BMI为25.0或以上是超重，而健康范围为18.5至24.9。该临床试验的纳入标准是16 >= BMI >= 38。
+
 
 ```python
+# 简单摘要
 patients.info()
 ```
 
@@ -192,26 +222,12 @@ patients.info()
 
 
 ```python
+# 各列汇总统计数据
 patients.describe()
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -301,22 +317,7 @@ patients.sample(5)
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -339,89 +340,89 @@ patients.sample(5)
   </thead>
   <tbody>
     <tr>
-      <th>266</th>
-      <td>267</td>
-      <td>female</td>
-      <td>Johanna</td>
-      <td>Dreher</td>
-      <td>3857 Straford Park</td>
-      <td>Whitesburg</td>
-      <td>KY</td>
-      <td>41858.0</td>
-      <td>United States</td>
-      <td>JohannaDreher@superrito.com1 606 632 4327</td>
-      <td>10/6/1948</td>
-      <td>187.0</td>
-      <td>61</td>
-      <td>35.3</td>
-    </tr>
-    <tr>
-      <th>347</th>
-      <td>348</td>
-      <td>female</td>
-      <td>Urška</td>
-      <td>Aličajić</td>
-      <td>3781 Hamill Avenue</td>
-      <td>San Diego</td>
-      <td>CA</td>
-      <td>92109.0</td>
-      <td>United States</td>
-      <td>858-273-2043UrskaAlicajic@rhyta.com</td>
-      <td>6/27/1952</td>
-      <td>183.3</td>
-      <td>63</td>
-      <td>32.5</td>
-    </tr>
-    <tr>
-      <th>314</th>
-      <td>315</td>
+      <th>461</th>
+      <td>462</td>
       <td>male</td>
-      <td>Renzo</td>
-      <td>Lucchese</td>
-      <td>4145 Fairfax Drive</td>
-      <td>Branchburg</td>
-      <td>NJ</td>
-      <td>8876.0</td>
+      <td>Cannan</td>
+      <td>Cabrera</td>
+      <td>2102 Geraldine Lane</td>
+      <td>New York</td>
+      <td>NY</td>
+      <td>10014.0</td>
       <td>United States</td>
-      <td>908-884-4247RenzoLucchese@dayrep.com</td>
-      <td>2/5/1970</td>
-      <td>212.1</td>
+      <td>646-289-4177CannanCabreraOrdonez@superrito.com</td>
+      <td>10/12/1980</td>
+      <td>209.7</td>
+      <td>71</td>
+      <td>29.2</td>
+    </tr>
+    <tr>
+      <th>219</th>
+      <td>220</td>
+      <td>male</td>
+      <td>Mỹ</td>
+      <td>Quynh</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4/9/1978</td>
+      <td>237.8</td>
       <td>69</td>
-      <td>31.3</td>
+      <td>35.1</td>
     </tr>
     <tr>
-      <th>446</th>
-      <td>447</td>
+      <th>497</th>
+      <td>498</td>
       <td>male</td>
-      <td>Eemil</td>
-      <td>Laine</td>
-      <td>2531 Eastland Avenue</td>
-      <td>Mclain</td>
-      <td>MS</td>
-      <td>39456.0</td>
+      <td>Masataka</td>
+      <td>Murakami</td>
+      <td>1179 Patton Lane</td>
+      <td>Tulsa</td>
+      <td>OK</td>
+      <td>74116.0</td>
       <td>United States</td>
-      <td>601-418-0102EemilLaine@einrot.com</td>
-      <td>3/22/1929</td>
-      <td>167.2</td>
+      <td>MasatakaMurakami@einrot.com+1 (918) 984-9171</td>
+      <td>8/19/1937</td>
+      <td>155.1</td>
       <td>72</td>
-      <td>22.7</td>
+      <td>21.0</td>
     </tr>
     <tr>
-      <th>157</th>
-      <td>158</td>
+      <th>380</th>
+      <td>381</td>
       <td>female</td>
-      <td>Ellen</td>
-      <td>Luman</td>
-      <td>4643 Reeves Street</td>
-      <td>Chilton</td>
-      <td>WI</td>
-      <td>53014.0</td>
+      <td>Silje</td>
+      <td>Kristiansen</td>
+      <td>4992 Moonlight Drive</td>
+      <td>Pleasantville</td>
+      <td>NJ</td>
+      <td>8232.0</td>
       <td>United States</td>
-      <td>EllenRLuman@einrot.com920-849-0384</td>
-      <td>2/26/1951</td>
-      <td>184.6</td>
+      <td>SiljeAKristiansen@dayrep.com609-641-2070</td>
+      <td>2/7/1996</td>
+      <td>162.4</td>
+      <td>64</td>
+      <td>27.9</td>
+    </tr>
+    <tr>
+      <th>272</th>
+      <td>273</td>
+      <td>female</td>
+      <td>Klementyna</td>
+      <td>Sokołowska</td>
+      <td>202 Ingram Street</td>
+      <td>Dayton</td>
+      <td>OH</td>
+      <td>45402.0</td>
+      <td>United States</td>
+      <td>KlementynaSokolowska@superrito.com+1 (937) 518...</td>
+      <td>3/6/1955</td>
+      <td>168.7</td>
       <td>60</td>
-      <td>36.0</td>
+      <td>32.9</td>
     </tr>
   </tbody>
 </table>
@@ -431,26 +432,12 @@ patients.sample(5)
 
 
 ```python
+#　检查缺失数据
 patients[patients['address'].isnull()]
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -684,83 +671,81 @@ patients[patients['address'].isnull()]
 
 
 ```python
+# 对surname列计数
 patients.surname.value_counts()
 ```
-
-
 
 
     Doe            6
     Jakobsen       3
     Taylor         3
+    Berg           2
+    Batukayev      2
+    Woźniak        2
+    Lương          2
+    Correia        2
+    Kadyrov        2
+    Liễu           2
+    Gersten        2
+    Aranda         2
+    Grímsdóttir    2
+    Dratchev       2
+    Nilsen         2
+    Tucker         2
+    Lund           2
+    Cabrera        2
+    Ogochukwu      2
     Johnson        2
     Tạ             2
-    Liễu           2
-    Dratchev       2
-    Lund           2
-    Nilsen         2
     Souza          2
-    Tucker         2
-    Silva          2
-    Correia        2
-    Bùi            2
-    Collins        2
-    Gersten        2
-    Woźniak        2
-    Aranda         2
-    Cabrera        2
     Schiavone      2
-    Cindrić        2
+    Bùi            2
     Parker         2
-    Kowalczyk      2
-    Ogochukwu      2
+    Silva          2
     Hueber         2
-    Grímsdóttir    2
-    Batukayev      2
-    Berg           2
+    Kowalczyk      2
     Lâm            2
-    Lương          2
+    Collins        2
                   ..
-    McKay          1
-    Lavrentyev     1
-    Kristiansen    1
-    Brhane         1
+    Vaneker        1
+    Selassie       1
+    Mathiesen      1
+    Markus         1
+    Villalpando    1
+    Jørgensen      1
     Löfgren        1
-    Izmailov       1
-    Koivuniemi     1
-    Magyar         1
-    Fesahaye       1
-    Totth          1
-    Petrussen      1
-    Milne          1
-    Afanasyeva     1
-    Hrdá           1
-    Tobeolisa      1
-    Mai            1
-    Wellish        1
-    Martinsson     1
-    Csorba         1
-    Alanis         1
-    Sági           1
-    Ruais          1
-    Nordin         1
-    Navrátil       1
-    Tromp          1
-    Nucci          1
-    Reilly         1
-    Vieira         1
-    Amari          1
-    Gegič          1
+    Wubbels        1
+    Mobourne       1
+    Zsinkó         1
+    Filípek        1
+    She            1
+    Mikkelsen      1
+    Wieczorek      1
+    Zaitseva       1
+    Sokołowska     1
+    Miramontes     1
+    Østergaard     1
+    Leppäluoto     1
+    Mehari         1
+    Galić          1
+    Scheltens      1
+    Allaire        1
+    Nyborg         1
+    Cabán          1
+    Knutsen        1
+    Haugen         1
+    Konovšek       1
+    Cunha          1
+    Ingason        1
     Name: surname, Length: 466, dtype: int64
 
 
 
 
 ```python
+# 对weight列值排序
 patients.weight.sort_values()
 ```
-
-
 
 
     210     48.8
@@ -830,26 +815,12 @@ patients.weight.sort_values()
 
 
 ```python
+# 打印address列重复值
 patients[patients.address.duplicated()]
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1200,19 +1171,22 @@ patients[patients.address.duplicated()]
 
 
 
+BMI = kg/m<sup>2</sup>，其中kg是一个人的体重（千克），m<sup>2</sup>是他们的身高（米）。
+
 
 ```python
+# 身高体重比例
 weight_lbs =192.3
 height_in = 72
 703 * weight_lbs / (height_in*height_in)
 ```
 
 
-
-
     26.077719907407406
 
 
+
+- ### treatments/治疗 表
 
 
 ```python
@@ -1220,22 +1194,7 @@ treatments.head()
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1306,6 +1265,15 @@ treatments.head()
 
 
 
+`treatments` 列:
+- **given_name**: 参与临床试验的主患者指数中每位患者的名字
+- **surname**: 参与临床试验的主患者指数中每位患者的姓氏
+- **auralin**: 在治疗的第24周测量的24周治疗结束时，转换为Auralin前一周的胰岛素基线中位日剂量（短跑前的数字）和胰岛素的终止中位日剂量（短划线后的数字）。两者都以单位（短'u'）来衡量，这是国际测量单位和胰岛素的标准测量。
+- **novodra**: 与上述相同，但继续用Novodra治疗的患者除外
+- **hba1c_start**: 患者在治疗第一周开始时的HbA1c水平。HbA1c代表血红蛋白A1c。该糖化血红蛋白测试测量的是平均血糖已经在过去的三个月。因此，它是一种了解糖尿病控制情况的有效方法。每个患有糖尿病的人都应该每年进行2到4次这种测试。以％计。
+- **hba1c_end**: 治疗最后一周末患者的HbA1c水平
+- **hba1c_change**: 患者HbA1c水平从治疗开始到结束的变化，即`hba1c_start` - `hba1c_end`。对于Auralin被认为有效，它必须与目前的胰岛素标准Novodra“非劣效”。这种“非劣效性”在统计学上定义为95％置信区间的上限小于0.4％，对于Novodra和Auralin（即Novodra减去Auralin）的平均HbA1c变化之间的差异。
+
 
 ```python
 treatments.info()
@@ -1331,22 +1299,7 @@ treatments.describe()
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1417,11 +1370,7 @@ sum(treatments.auralin.isnull())
 ```
 
 
-
-
     0
-
-
 
 
 ```python
@@ -1429,11 +1378,11 @@ sum(treatments.novodra.isnull())
 ```
 
 
-
-
     0
 
 
+
+- ### adverse_reactions/不良反应 表
 
 
 ```python
@@ -1441,22 +1390,7 @@ adverse_reactions.head()
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1501,7 +1435,16 @@ adverse_reactions.head()
 </table>
 </div>
 
+`adverse_reactions` 列:
 
+- **given_name**: 主要患者指数中参与临床试验且有不良反应的每位患者的名字（包括治疗Auralin和Novodra的患者）
+- **surname**: 主患者指数中每位患者的姓氏，参与临床试验并有不良反应（包括治疗Auralin和Novodra的患者）
+- **adverse_reaction**: 患者报告的不良反应
+
+其他有用信息:
+- 胰岛素抵抗因人而异，这就是为什么需要起始中位日剂量和终止中位日剂量，即计算剂量变化的原因。
+- 在他们想要帮助的人中测试药物和医疗产品是很重要的。不同年龄，种族，性别和种族的人必须参加临床试验。这种多样性反映在`patients`表中。
+- 确保列名称具有足够的描述性是熟悉数据的重要一步。“足够描述性”是主观的。理想情况下，您需要短列名称（因此它们更容易以代码形式键入和读取），但也需要完全描述性。长度与描述性是一种权衡和共同的争论（变量名称存在类似的争论）。该auralin和novodra列名也有可能不是足够的描述，但你会解决以后，所以不要担心现在。
 
 
 ```python
@@ -1517,29 +1460,12 @@ adverse_reactions.info()
     dtypes: object(3)
     memory usage: 896.0+ bytes
 
-
-
 ```python
 adverse_reactions.describe()
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-    
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1564,7 +1490,7 @@ adverse_reactions.describe()
     </tr>
     <tr>
       <th>top</th>
-      <td>finley</td>
+      <td>jia li</td>
       <td>johnson</td>
       <td>hypoglycemia</td>
     </tr>
@@ -1587,8 +1513,6 @@ all_colums[all_colums.duplicated()]
 ```
 
 
-
-
     14    given_name
     15       surname
     21    given_name
@@ -1597,8 +1521,8 @@ all_colums[all_colums.duplicated()]
 
 
 
-### Quality
-#####  *`treatment`表*
+## Quality
+####  *`treatment`表*
 - 丢失数据(应该350名患者，实际280)
 - 缺少hba1c_change
 - 'auralin`和`novodra`列中的起始剂量和最终剂量旁边的'u'
@@ -1606,7 +1530,7 @@ all_colums[all_colums.duplicated()]
 - 错误数据类型（zip_code, assigned sex, state, birthday）
 - 错误的HbA1c change
 
-##### `patients`表
+#### `patients`表
 - zip_code格式不佳（例如，四位数和浮点数据类型而不是五位数字和字符串或对象数据类型）
 - 患者身高值不正确（例如，Tim Neudorf身高27英寸而不是72英寸）
 - state不一致(有时是完整的州名，有时是缩写)
@@ -1615,9 +1539,9 @@ all_colums[all_colums.duplicated()]
 - 话号码格式不一致
 - 有不可恢复的无名氏记录
 - Jakobsen, Gersten, Taylor有多项记录
-- Zaitseva的重量单位是“kgs”而不是“lbs”（磅）
+- Zaitseva的重量是“kgs”而不是“lbs”（磅）
 
-##### `adverse_reactions`表
+#### `adverse_reactions`表
 - 小写名称
 
 ### 数据质量维度
@@ -1633,7 +1557,7 @@ all_colums[all_colums.duplicated()]
 - 治疗表中，将auranlin and novodra 分为三个变量（treatment, start does and end does）
 
 ### 脏数据的来源
-脏数据=低质量数据=内容问题
+**脏数据=低质量数据=内容问题**
 
 脏数据有很多来源。基本上，只要人类参与其中，就会有脏数据。我们有很多方法可以处理我们使用的数据。
 
@@ -1647,6 +1571,8 @@ all_colums[all_colums.duplicated()]
 - 最后，数据可能在宇宙射线或其他物理现象的传输或存储中被破坏。嘿，这不是我们的错。
 
 ### 凌乱数据的来源
-- 凌乱的数据=不整洁的数据=结构问题
+- **凌乱的数据=不整洁的数据=结构问题**
 
-- 凌乱的数据通常是数据规划不佳的结果。或者缺乏对整洁数据的好处的认识。幸运的是，凌乱的数据通常比上面提到的大多数脏数据源更容易解决。
+- **凌乱的数据通常是数据规划不佳的结果**。或者缺乏对整洁数据的好处的认识。幸运的是，凌乱的数据通常比上面提到的大多数脏数据源更容易解决。
+
+>[Jupyter Notebook](https://nbviewer.jupyter.org/github/hufe09/pydata_practice/blob/master/data_wrangling/Assess/Assessing.ipynb)
