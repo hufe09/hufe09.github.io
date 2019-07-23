@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "「数据争论」Module 02: Gathering Data"
-subtitle: 'Request/ BeautifulSoup/ Wptools (MediaWiki API)'
+subtitle: '使用Python从各种来源和各种文件格式中收集数据'
 author: "Hufe"
 header-img: "img/post-bg-datas.jpg"
 header-mask: 0.3
@@ -14,7 +14,28 @@ tags:
 ---
 
 
-# Gathering
+## 来源：本地文件
+### 平面文件
+
+平面文件包含纯文本格式的表格数据，每行一个数据记录，每个记录或行包含一个或多个字段。这些字段由分隔符分隔，如逗号，制表符或冒号。
+
+**平面文件的优点**包括：
+
+- 它们是文本文件，因此是人类可读的。
+- 轻巧。
+- 简单易懂。
+- 可以读/写文本文件的软件无处不在，就像文本编辑器一样。
+- 非常适合小型数据集。
+
+例如，与关系数据库相比，**平面文件的缺点**包括：
+
+- 缺乏标准。
+- 数据冗余。
+- 共享数据可能很麻烦。
+- 对于大型数据集来说并不是很好。
+
+### 寻找最好的电影
+- 烂番茄最受欢迎的100部电影TSV文件
 
 
 ```python
@@ -31,6 +52,23 @@ df_bestofrt = pd.read_csv('bestofrt.tsv', sep='\t')
 df_bestofrt.head()
 ```
 
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -79,6 +117,10 @@ df_bestofrt.head()
     </tr>
   </tbody>
 </table>
+</div>
+
+
+
 
 ```python
 df_bestofrt.info()
@@ -94,6 +136,8 @@ df_bestofrt.info()
     dtypes: int64(3), object(1)
     memory usage: 3.2+ KB
 
+
+
 ```python
 import matplotlib.pyplot as plt
 %matplotlib inline
@@ -108,130 +152,7 @@ plt.scatter(df_bestofrt.number_of_critic_ratings, df_bestofrt.critic_score)
 
 ![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.eukxdddmbnm.png)
 
-## 爬取在线网页数据
-
-
-```python
-import requests
-```
-
-
-```python
-url = 'https://www.rottentomatoes.com/m/et_the_extraterrestrial'
-response = requests.get(url)
-```
-
-
-```python
-from bs4 import BeautifulSoup
-soup = BeautifulSoup(response.content, 'lxml')
-```
-
-
-```python
-# soup
-```
-
-
-```python
-soup.find('title').contents
-```
-
-
-    ['E.T. The Extra-Terrestrial (1982) - Rotten Tomatoes']
-
-
-```python
-soup.find('title').contents[0][:-len(' - Rotten Tomatoes')]
-```
-
-
-    'E.T. The Extra-Terrestrial (1982)'
-
-
-```python
-len(' - Rotten Tomatoes')
-```
-
-
-    18
-
-
-```python
-soup.find('title')
-```
-
-
-    <title>E.T. The Extra-Terrestrial (1982) - Rotten Tomatoes</title>
-
-
-```python
-soup.findAll('h2', class_= 'mop-ratings-wrap__score')
-```
-
-
-    [<h2 class="mop-ratings-wrap__score">
-     <a class="unstyled articleLink mop-ratings-wrap__icon-link" href="#contentReviews" id="tomato_meter_link">
-     <span class="mop-ratings-wrap__icon meter-tomato icon big medium-xs certified_fresh"></span>
-     <span class="mop-ratings-wrap__percentage">
-                         98%
-                     </span>
-     </a>
-     </h2>, <h2 class="mop-ratings-wrap__score">
-     <a class="unstyled articleLink mop-ratings-wrap__icon-link" href="#audience_reviews">
-     <span class="mop-ratings-wrap__icon meter-tomato icon big medium-xs upright"></span>
-     <span class="mop-ratings-wrap__percentage">
-                         72%
-                     </span>
-     </a>
-     </h2>]
-
-
-```python
-soup.find('span', class_= 'mop-ratings-wrap__percentage').contents
-```
-
-
-    ['\n                    98%\n                ']
-
-
-```python
-soup.find('span', class_= 'mop-ratings-wrap__percentage').contents[0].strip()[:-1]
-```
-
-
-    '98'
-
-
-```python
-soup.findAll('span', class_= 'mop-ratings-wrap__percentage')[1].contents
-```
-
-
-    ['\n                    72%\n                ']
-
-
-```python
-soup.findAll('span', class_= 'mop-ratings-wrap__percentage')[1].contents[0].strip()[:-1]
-```
-
-
-    '72'
-
-
-```python
-num_audience_ratings = soup.findAll("strong", class_= 'mop-ratings-wrap__text--small')[1].contents[0].strip()
-num_audience_ratings = num_audience_ratings.split(":")
-num_audience_ratings = int(num_audience_ratings[1].replace(',', ''))
-num_audience_ratings
-```
-
-
-    32314349
-
-
-
-## 爬取本地网页数据
+### Python解析HTML文件
 
 
 ```python
@@ -262,6 +183,21 @@ df_html
 
 
 
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -641,6 +577,11 @@ df_html
   </tbody>
 </table>
 <p>100 rows × 3 columns</p>
+</div>
+
+
+
+
 ```python
 import matplotlib.pyplot as plt
 %matplotlib inline
@@ -649,6 +590,8 @@ plt.scatter(df_html.audience_score, df_bestofrt.critic_score)
 
 
     <matplotlib.collections.PathCollection at 0x7fc390c14240>
+
+
 
 
 ![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.42dyimmm43v.png)
@@ -668,12 +611,16 @@ soup.find('title')
     <title>E.T. The Extra-Terrestrial (1982) - Rotten Tomatoes</title>
 
 
+
+
 ```python
 soup.find('title').contents[0]
 ```
 
 
     'E.T. The Extra-Terrestrial\xa0(1982) - Rotten Tomatoes'
+
+
 
 
 ```python
@@ -684,12 +631,16 @@ soup.find('title').contents[0][:-len(' - Rotten Tomatoes')]
     'E.T. The Extra-Terrestrial\xa0(1982)'
 
 
+
+
 ```python
 soup.find('title').contents[0][:-18]
 ```
 
 
     'E.T. The Extra-Terrestrial\xa0(1982)'
+
+
 
 
 ```python
@@ -710,12 +661,16 @@ soup.find(attrs={"class": "audience-score meter"})
     </a></div>
 
 
+
+
 ```python
 soup.find('div', class_='audience-score meter').find('span').contents[0][:-1]
 ```
 
 
     '72'
+
+
 
 
 ```python
@@ -729,7 +684,161 @@ num_audience_ratings
 
 
 
-## 爬取影评
+### 爬取在线网页数据
+最近，烂番茄电影页面html结构有所改变，现在尝试在线解析。
+
+
+```python
+import requests
+```
+
+
+```python
+url = 'https://www.rottentomatoes.com/m/et_the_extraterrestrial'
+response = requests.get(url)
+```
+
+
+```python
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(response.content, 'lxml')
+```
+
+
+```python
+# soup
+```
+
+
+```python
+soup.find('title').contents
+```
+
+
+    ['E.T. The Extra-Terrestrial (1982) - Rotten Tomatoes']
+
+
+
+
+```python
+soup.find('title').contents[0][:-len(' - Rotten Tomatoes')]
+```
+
+
+    'E.T. The Extra-Terrestrial (1982)'
+
+
+
+
+```python
+len(' - Rotten Tomatoes')
+```
+
+
+    18
+
+
+
+
+```python
+soup.find('title')
+```
+
+
+    <title>E.T. The Extra-Terrestrial (1982) - Rotten Tomatoes</title>
+
+
+
+
+```python
+soup.findAll('h2', class_= 'mop-ratings-wrap__score')
+```
+
+
+    [<h2 class="mop-ratings-wrap__score">
+     <a class="unstyled articleLink mop-ratings-wrap__icon-link" href="#contentReviews" id="tomato_meter_link">
+     <span class="mop-ratings-wrap__icon meter-tomato icon big medium-xs certified_fresh"></span>
+     <span class="mop-ratings-wrap__percentage">
+                         98%
+                     </span>
+     </a>
+     </h2>, <h2 class="mop-ratings-wrap__score">
+     <a class="unstyled articleLink mop-ratings-wrap__icon-link" href="#audience_reviews">
+     <span class="mop-ratings-wrap__icon meter-tomato icon big medium-xs upright"></span>
+     <span class="mop-ratings-wrap__percentage">
+                         72%
+                     </span>
+     </a>
+     </h2>]
+
+
+
+
+```python
+soup.find('span', class_= 'mop-ratings-wrap__percentage').contents
+```
+
+
+    ['\n                    98%\n                ']
+
+
+
+
+```python
+soup.find('span', class_= 'mop-ratings-wrap__percentage').contents[0].strip()[:-1]
+```
+
+
+    '98'
+
+
+
+
+```python
+soup.findAll('span', class_= 'mop-ratings-wrap__percentage')[1].contents
+```
+
+
+    ['\n                    72%\n                ']
+
+
+
+
+```python
+soup.findAll('span', class_= 'mop-ratings-wrap__percentage')[1].contents[0].strip()[:-1]
+```
+
+
+    '72'
+
+
+
+
+```python
+num_audience_ratings = soup.findAll("strong", class_= 'mop-ratings-wrap__text--small')[1].contents[0].strip()
+num_audience_ratings = num_audience_ratings.split(":")
+num_audience_ratings = int(num_audience_ratings[1].replace(',', ''))
+num_audience_ratings
+```
+
+
+    32314349
+
+
+
+## 来源：从Internet下载文件
+
+### HTTP（超文本传输协议）
+
+HTTP，即超文本传输协议，是Web浏览器（如Chrome或Safari）和Web服务器（基本上是存储网站内容的计算机）相互通信的语言。每次打开网页，下载文件或观看视频时，都可以使用HTTP。
+
+HTTP是请求/响应协议：
+
+- 计算机（即客户端）向服务器发送请求以获取某个文件。例如下面展示的过程：*“让我获取文件 **1-the-wizard-of-oz-1939-film.txt** ”*。
+    GET是用于检索数据的HTTP请求方法（其中有多个）的名称。
+- Web服务器发回响应。如果请求有效：*“这是您要求的文件：”*，然后返回**1-the-wizard-of-oz-1939-film.txt**文件本身的内容。
+
+![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.zdbpufqrdul.png)
 
 
 ```python
@@ -764,8 +873,12 @@ os.listdir(folder_name_example)
     ['2-citizen-kane.txt', '1-the-wizard-of-oz-1939-film.txt']
 
 
+
+### 下载影评
+
+
 ```python
-ebert_review_urls = ['https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9900_1-the-wizard-of-oz-1939-film/1-the-wizard-of-oz-1939-film.txt',
+film_review_urls = ['https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9900_1-the-wizard-of-oz-1939-film/1-the-wizard-of-oz-1939-film.txt',
                      'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_2-citizen-kane/2-citizen-kane.txt',
                      'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9901_3-the-third-man/3-the-third-man.txt',
                      'https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59ad9902_4-get-out-film/4-get-out-film.txt',
@@ -857,15 +970,22 @@ ebert_review_urls = ['https://d17h27t6h515a5.cloudfront.net/topher/2017/Septembe
 
 ``` Python
 # Make directory if it doesn't already exist
-folder_name = 'ebert_reviews'
+folder_name = 'film_reviews'
 if not os.path.exists(folder_name):
     os.makedirs(folder_name)
     
-for url in ebert_review_urls:
+for url in film_review_urls:
     response = requests.get(url)
     with open(os.path.join(folder_name, url.split('/')[-1]), mode='wb') as file:
         file.write(response.content)
 ```
+
+要打开并读取文档，我们需要循环迭代此文件夹中的所有文件，此处有两种方法可用，一种是通过OS库完成另一种是使用名为glob的库完成
+- glob库允许Unix风格的路径名模式扩展
+
+`glob.glob()` 它会返回一个与pathname匹配的路径名称
+
+`*` 指匹配任何长度的字符串
 
 
 ```python
@@ -874,10 +994,10 @@ import glob
 
 
 ```python
-folder_name = 'ebert_reviews'
+folder_name = 'film_reviews'
 df_list = []
-for ebert_review in glob.glob('ebert_reviews/*.txt'):
-    with open(ebert_review, encoding='utf-8') as file:
+for film_review in glob.glob('film_reviews/*.txt'):
+    with open(film_review, encoding='utf-8') as file:
         title = file.readline()[:-1]
         review_url = file.readline()[:-1]
         review_text = file.read()
@@ -892,6 +1012,22 @@ df = pd.DataFrame(df_list, columns=['title', 'review_url', 'review_text'])
 df
 ```
 
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+    
+    .dataframe thead th {
+        text-align: right;
+    }
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -1272,6 +1408,11 @@ df
   </tbody>
 </table>
 <p>88 rows × 3 columns</p>
+</div>
+
+
+
+
 ```python
 title_list = []
 for t in df.title:
@@ -1284,7 +1425,130 @@ len(title_list)
 
 
 
-## MediaWiki API:   Wptools
+### WordCloud
+
+
+```python
+toy_story_review = './film_reviews/98-toy-story.txt'
+with open(toy_story_review, encoding='utf-8') as file:
+    title = file.readline()[:-1]
+    review_url = file.readline()[:-1]
+    review_text = file.read()
+    df_list.append({'title': title,
+                   'review_url': review_url,
+                   'review_text': review_text})
+```
+
+
+```python
+#-*- coding:utf-8 -*-
+from wordcloud import WordCloud, STOPWORDS
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
+
+# 生成词云
+def create_word_cloud(f):
+    print('根据词频计算词云')  
+    # 设置停用词
+    stopwords = set(STOPWORDS)
+    stopwords.update(["hello", "hi"])
+    # 设置词云形状
+    mask_img = np.array(Image.open(r"./toy-story.png"))
+    
+    wc = WordCloud(
+     background_color='white',# 设置背景颜色
+#      font_path='../../fonts/SimHei.ttf',  # 设置字体，针对中文的情况需要设置中文字体，否则显示乱码
+     max_font_size=150,# 设置字体最大值
+     width=1080,# 设置画布的宽度
+     height=1920,# 设置画布的高度
+     random_state=30,# 设置多少种随机状态，即多少种颜色
+     mask = mask_img, 
+     stopwords = stopwords
+    )
+    wordcloud = wc.generate(f)
+     # 写词云图片
+    wordcloud.to_file("./wordcloud.jpg")
+     # 显示词云文件
+    plt.imshow(wordcloud)
+    plt.axis("off")
+    plt.show()
+create_word_cloud(review_text)
+```
+
+    根据词频计算词云
+
+
+
+
+![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.005h4j4qc242.png)
+
+## JSON文件结构
+JSON（Javascript Object Notation）顾名思义JavaScript对象标记而XML代表可延伸标记语言
+
+API的大部分数据都是JSON或XML格式
+### Writing JSON
+将Python dict对象转换为序列化的JSON字符串。  
+- `json.dump()`：它将dict对象以JSON格式写入“文本文件”。
+- `json.dumps()`：略有变化json.dump()。它返回实际的JSON字符串，并在JSON str中提供更多控件。
+
+
+```python
+import json
+
+data = {}  
+data['people'] = []  
+data['people'].append({'name': 'Scott', 'website': 'stackabuse.com', 'from': 'Nebraska'})
+data['people'].append({'name': 'Larry', 'website': 'google.com', 'from': 'Michigan'})
+data['people'].append({'name': 'Tim', 'website': 'apple.com', 'from': 'Alabama'})
+
+with open('json_data.txt', 'w') as out_f:  
+    json.dump(data, out_f)
+```
+
+### Reading  JSON
+- `json.load()`：它从文件中读取字符串，解析JSON数据，使用数据填充Python dict并将其返回。
+- `json.loads()`：略有变化`json.load()`。它允许我们直接处理str（因为很多时候你可能没有包含你的JSON的类文件对象）。
+
+
+```python
+with open('json_data.txt') as json_f:  
+    data = json.load(json_f)
+data
+```
+
+
+    {'people': [{'name': 'Scott', 'website': 'stackabuse.com', 'from': 'Nebraska'},
+      {'name': 'Larry', 'website': 'google.com', 'from': 'Michigan'},
+      {'name': 'Tim', 'website': 'apple.com', 'from': 'Alabama'}]}
+
+
+
+
+```python
+for p in data['people']:
+    print('Name: ' + p['name'])
+    print('Website: ' + p['website'])
+    print('From: ' + p['from'])
+    print('')
+```
+
+    Name: Scott
+    Website: stackabuse.com
+    From: Nebraska
+    
+    Name: Larry
+    Website: google.com
+    From: Michigan
+    
+    Name: Tim
+    Website: apple.com
+    From: Alabama
+
+
+
+## 来源：API（应用程序编程接口）
+### MediaWiki API:   Wptools
 
 MediaWiki有许多不同的库，可以满足各种编程语言的需求。对于MediaWiki，Python中最新的称为[wptools](https://github.com/siznax/wptools)。
 
@@ -1294,6 +1558,8 @@ MediaWiki有许多不同的库，可以满足各种编程语言的需求。对�
 - Twitter API→tweepy
 - wptools指南：（https://github.com/siznax/wptools）
 - tweepy准则：（https://media.readthedocs.org/pdf/tweepy/latest/tweepy.pdf）
+
+>wptools在国内无法使用，需要梯子。还有另外一种方法，通过[Kaggle](https://www.kaggle.com/)创建一个Kernel来使用。
 
 
 ```python
@@ -1340,7 +1606,7 @@ images[0]['url']
       pageid: 73441
       parsetree: <str(99699)> <root><template><title>Redirect</title><...
       random: The Combine Harvester
-      redirects: <list(38)> {'pageid': 177061, 'ns': 0, 'title': 'E.T....
+      redirects: <list(38)> 'pageid': 177061, 'ns': 0, 'title': 'E.T....
       requests: <list(9)> query, parse, wikidata, labels, labels, labe...
       title: E.T._the_Extra-Terrestrial
       url: https://en.wikipedia.org/wiki/E.T._the_Extra-Terrestrial
@@ -1353,7 +1619,9 @@ images[0]['url']
       wikidata_url: https://www.wikidata.org/wiki/Q11621
       wikitext: <str(79622)> Redirect|E.T.|other uses|ET (disambigua...
     }
-    
+
+
+
     'https://upload.wikimedia.org/wikipedia/en/6/66/E_t_the_extra_terrestrial_ver3.jpg'
 
 
@@ -1370,6 +1638,8 @@ r = requests.get(images[0]['url'])
 i = Image.open(BytesIO(r.content))
 i
 ```
+
+
 
 
 
@@ -1464,127 +1734,91 @@ for i in df_list:
 - Spirited Away
 ![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.51qz44eaukg.png)
 
-## Writing JSON
-将Python dict对象转换为序列化的JSON字符串。  
-- `json.dump()`：它将dict对象以JSON格式写入“文本文件”。
-- `json.dumps()`：略有变化json.dump()。它返回实际的JSON字符串，并在JSON str中提供更多控件。
+## Python & 关系数据库
 
+### 数据争论和关系数据库
 
-```python
-import json
+在数据争论的背景下，建议数据库和SQL仅用于收集数据或存储数据。
 
-data = {}  
-data['people'] = []  
-data['people'].append({'name': 'Scott', 'website': 'stackabuse.com', 'from': 'Nebraska'})
-data['people'].append({'name': 'Larry', 'website': 'google.com', 'from': 'Michigan'})
-data['people'].append({'name': 'Tim', 'website': 'apple.com', 'from': 'Alabama'})
+- **连接到数据库并将数据**导入pandas DataFrame（或首选编程语言中的类似数据结构），然后评估和清理该数据，或者
+- **连接到数据库并存储**刚刚收集的**数据**（可能来自数据库），评估和清理
 
-with open('json_data.txt', 'w') as out_f:  
-    json.dump(data, out_f)
-```
+当您拥有大量数据时，这些任务尤为必要，这是SQL和其他数据库优于平面文件的地方。
 
-## Reading  JSON
-- `json.load()`：它从文件中读取字符串，解析JSON数据，使用数据填充Python dict并将其返回。
-- `json.loads()`：略有变化`json.load()`。它允许我们直接处理str（因为很多时候你可能没有包含你的JSON的类文件对象）。
+上述两种情况可以进一步细分为三个主要任务：
 
+- 用Python连接数据库
+- **From** pandas DataFrame存储数据 **to** 已连接的数据库中
+- **From** 已连接的数据库导入数据 **to** pandas DataFrame 
 
-```python
-with open('json_data.txt') as json_f:  
-    data = json.load(json_f)
-data
-```
+连接到数据库。使用[SQLAlchemy](https://www.sqlalchemy.org/)连接到关系数据库，SQLAlchemy是Python的数据库工具包。
 
+使用方法参考[SQLAlchemy使用/ Pandas操作SQLAlchemy/ PyMySQL操作MySQL](https://hufe09.github.io/2019/04/02/Python-&-SQL/)
 
+## Python & NoSQL
+非关系型数据库在如今的大数据环境下越来越受到重用。相比传统的关系型数据库，非关系型数据库在越来越多的使用场景下极大地提升了生产力。
 
+非关系型数据库的佼佼者——文档型数据库MongoDB与键值数据库Redis，比较流行。
 
-    {'people': [{'name': 'Scott', 'website': 'stackabuse.com', 'from': 'Nebraska'},
-      {'name': 'Larry', 'website': 'google.com', 'from': 'Michigan'},
-      {'name': 'Tim', 'website': 'apple.com', 'from': 'Alabama'}]}
+MongoDB 是目前最流行的 NoSQL 数据库之一，使用的数据类型 BSON（类似 JSON）。Python 要连接 MongoDB 需要 MongoDB 驱动，这里我们使用 PyMongo 驱动来连接。
+使用方法参考[MongoDB简单使用](https://hufe09.github.io/2019/06/01/MongoDB/)
 
+## 数据获取手段：数据仓库(Data Warehouse)
+数据仓库，英文名称Data Warehouse，简写为DW。数据仓库顾名思义，是一个很大的数据存储集合，出于企业的分析性报告和决策支持目的而创建，对多样的业务数据进行筛选与整合。它为企业提供一定的BI（商业智能）能力，指导业务流程改进、监视时间、成本、质量以及控制。
 
+![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.smeetkbcv9.png)
 
+数据仓库的输入方是各种各样的数据源，最终的输出用于企业的数据分析、数据挖掘、数据报表等方向。
 
-```python
-for p in data['people']:
-    print('Name: ' + p['name'])
-    print('Website: ' + p['website'])
-    print('From: ' + p['from'])
-    print('')
-```
+不同数据源的数据集成，所依靠的是**ETL**
 
-    Name: Scott
-    Website: stackabuse.com
-    From: Nebraska
-    
-    Name: Larry
-    Website: google.com
-    From: Michigan
-    
-    Name: Tim
-    Website: apple.com
-    From: Alabama
+### 什么是ETL？
+ETL的英文全称是 Extract-Transform-Load 的缩写，用来描述将数据从来源迁移到目标的几个过程：
+- 1.Extract，数据抽取，也就是把数据从数据源读出来。
+- 2.Transform，数据转换，把原始数据转换成期望的格式和维度。如果用在数据仓库的场景下，Transform也包含数据清洗，清洗掉噪音数据。
+- 3.Load  数据加载，把处理后的数据加载到目标处，比如数据仓库。
+![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.k6hjxuxqynm.png)
 
+在国内常用，是一款基于Hadoop的开源数据仓库，名叫**Hive**.
 
+知名商业数据仓库有很多，比如 Oracle，Db2等等。其中业界老大，要属**Teradata**.
 
-## WordCloud
+参考[什么是数据仓库？](https://blog.csdn.net/bjweimengshu/article/details/79256504)
 
+### **数据库 VS 数据仓库**
+- 数据库面向业务存储，仓库面向主题存储（主题较高层次上对分析对象数据的一个完整并且一致的描述）
+- 数据库针对应用（OLTP），仓库针对分析（OLAP）
+- 数据库组织规范，仓库可能冗余，相对变化大，数据量大
 
-```python
-# !pip install wordcloud
-```
+## 其他文件格式
 
+本文中介绍的的文件类型是绝大多数争论项目进行交互的文件类型。例如：
 
-```python
-ebert_review = './ebert_reviews/98-toy-story.txt'
-with open(ebert_review, encoding='utf-8') as file:
-    title = file.readline()[:-1]
-    review_url = file.readline()[:-1]
-    review_text = file.read()
-    df_list.append({'title': title,
-                   'review_url': review_url,
-                   'review_text': review_text})
-```
+- 平面文件（例如CSV和TSV）
+- HTML文件
+- JSON文件
+- TXT文件
+- 关系数据库文件
 
+其他不太常见的文件格式包括：
 
-```python
-#-*- coding:utf-8 -*-
-from wordcloud import WordCloud, STOPWORDS
-import matplotlib.pyplot as plt
-import numpy as np
-from PIL import Image
+- [Excel files](https://www.lifewire.com/what-is-an-xlsx-file-2622540)
+- [Pickle files](https://stackoverflow.com/questions/7501947/understanding-pickling-in-python)
+- [HDF5 files](http://neondataskills.org/HDF5/About)
+- [SAS files](http://whatis.techtarget.com/fileformat/SAS-SAS-program-file)
+- [STATA files](http://faculty.econ.ucdavis.edu/faculty/cameron/stata/stataintro.html)
 
-# 生成词云
-def create_word_cloud(f):
-    print('根据词频计算词云')  
-    # 设置停用词
-    stopwords = set(STOPWORDS)
-    stopwords.update(["hello", "hi"])
-    # 设置词云形状
-    mask_img = np.array(Image.open(r"./toy-story.png"))
-    
-    wc = WordCloud(
-     background_color='white',# 设置背景颜色
-#      font_path='../../fonts/SimHei.ttf',  # 设置字体，针对中文的情况需要设置中文字体，否则显示乱码
-     max_font_size=150,# 设置字体最大值
-     width=1080,# 设置画布的宽度
-     height=1920,# 设置画布的高度
-     random_state=30,# 设置多少种随机状态，即多少种颜色
-     mask = mask_img, 
-     stopwords = stopwords
-    )
-    wordcloud = wc.generate(f)
-     # 写词云图片
-    wordcloud.to_file("./wordcloud.jpg")
-     # 显示词云文件
-    plt.imshow(wordcloud)
-    plt.axis("off")
-    plt.show()
-create_word_cloud(review_text)
-```
+Pandas有[函数](https://pandas.pydata.org/pandas-docs/stable/reference/index.html)来读取（和写入，大多数）这些文件。
 
-    根据词频计算词云
+## 总结
+本文介绍了几种获取数据的方式
+- 本地文件，包括平面文件等
+- 从网络下载，例如爬虫等
+- API接口获取，很多API返回数据都是JSON
+- 从数据库获取，包括关系型数据库和NoSQL
+- 从数据仓库获取
+- 从其他一些不常见的文件格式获取
 
-
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.005h4j4qc242.png)
-
-> [Jupyter Notebook](https://nbviewer.jupyter.org/github/hufe09/pydata_practice/blob/master/data_wrangling/Gather/Gathering.ipynb)
+> [Jupyter Notebook](<https://nbviewer.jupyter.org/github/hufe09/DataWrangling/blob/master/Gather/Gathering.ipynb>)
+>
+> [Github](<https://github.com/hufe09/DataWrangling>)

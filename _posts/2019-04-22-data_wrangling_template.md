@@ -479,4 +479,5 @@ df.StartDate.value_counts().plot(kind= "pie", labels = labels)
 
 
 
-[Jupyter Notebook](https://nbviewer.jupyter.org/github/hufe09/pydata_practice/blob/master/data_wrangling/data_wrangling_template.ipynb)
+[Jupyter Notebook](https://nbviewer.jupyter.org/github/hufe09/DataWrangling/blob/master/data_wrangling_template.ipynb)
+[Github](https://github.com/hufe09/DataWrangling)

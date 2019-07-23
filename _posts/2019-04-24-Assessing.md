@@ -53,7 +53,7 @@ adverse_reactions = pd.read_csv('adverse_reactions.csv')
 
 ## Assess
 
-- ### patients/病人 表
+### patients/病人 表
 
 
 ```python
@@ -1186,7 +1186,7 @@ height_in = 72
 
 
 
-- ### treatments/治疗 表
+### treatments/治疗 表
 
 
 ```python
@@ -1382,7 +1382,7 @@ sum(treatments.novodra.isnull())
 
 
 
-- ### adverse_reactions/不良反应 表
+### adverse_reactions/不良反应 表
 
 
 ```python
@@ -1575,4 +1575,5 @@ all_colums[all_colums.duplicated()]
 
 - **凌乱的数据通常是数据规划不佳的结果**。或者缺乏对整洁数据的好处的认识。幸运的是，凌乱的数据通常比上面提到的大多数脏数据源更容易解决。
 
->[Jupyter Notebook](https://nbviewer.jupyter.org/github/hufe09/pydata_practice/blob/master/data_wrangling/Assess/Assessing.ipynb)
+>[Jupyter Notebook](https://nbviewer.jupyter.org/github/hufe09/DataWrangling/blob/master/Assess/Assessing.ipynb)
+>[Github](https://github.com/hufe09/DataWrangling)
