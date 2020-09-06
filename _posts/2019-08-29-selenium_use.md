@@ -147,7 +147,7 @@ driver.get(request_url)
 ```
 
 如果一切正常，此时会运行一个新的 Chrome 窗口来打开百度页面。
-![title](https://i.loli.net/2019/08/29/gHVT8BrDj2nUzQh.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/gHVT8BrDj2nUzQh.png)
 
 如果下载的 chromedriver 没有添加到环境变量里面，会报如下报错:
 
@@ -205,8 +205,11 @@ Google
 cheese! - Google 搜索
 ```
 
-![title](https://i.loli.net/2019/08/29/oaVIJfUY8Sus9DL.png)
-![title](https://i.loli.net/2019/08/29/G6oj1fKcLnW7CZJ.gif)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/oaVIJfUY8Sus9DL.png)
+
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/G6oj1fKcLnW7CZJ.gif)
+
+
 
 ## 5. headless 模式
 

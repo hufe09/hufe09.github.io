@@ -55,11 +55,11 @@ tags:
 ## 三、设置腾讯云安全组规则
     入站规则 - 添加规则  
 输入如下值  
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/29/1553873599388-1553873599392.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553873599388-1553873599392.png)
 
 ## 四、登录navicat
 在navicat或其他MySQL数据库管理工具登录，即可成功连接云服务器的数据库  
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/29/1553873610152-1553873610157.png)   
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553873610152-1553873610157.png)   
 <br>
 > 参考自: https://blog.csdn.net/weixin_41471128/article/details/83189083  
 

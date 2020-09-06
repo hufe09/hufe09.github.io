@@ -11,7 +11,7 @@ tags:
 
 > 背景：为比赛做一份统计信息表格，内容包括每个商店的总粉丝数，总海报浏览量，以及近三天的日增粉丝数，每日浏览量。
 
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553960194588-1553960194591.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553960194588-1553960194591.png)
 
 ## 1. 初始化一张新表
 ```
@@ -31,7 +31,7 @@ yesterdayStatistics INT DEFAULT 0 NULL,
 beforeYesterdayStatistics INT DEFAULT 0 NULL 
 );
 ```
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553957733824-1553957733827.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553957733824-1553957733827.png)
 
 
 ## 2. 查询出参加比赛店铺列表id，存入id_list_temp VIEW 
@@ -57,7 +57,7 @@ WHERE
 	dianpu_id IN ( SELECT * FROM id_list_temp );
 ```
 
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553958020637-1553958020641.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553958020637-1553958020641.png)
 
 ##  4. 查询出比赛店铺三天内每天的粉丝，存入fans_sub VIEW
 ```
@@ -83,7 +83,7 @@ ORDER BY
 	3 DESC 
 	);
 ```
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553958801978-1553958801982.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553958801978-1553958801982.png)
 
 ##  5. 行列转换，按日期将粉丝数汇总，存入fans_temp VIEW
 
@@ -103,7 +103,7 @@ ORDER BY
 	2 DESC 
 	);
 ```
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553958911425-1553958911430.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553958911425-1553958911430.png)
 
 ##  6. 查询出比赛店铺三天内每天的浏览量，存入statistics_sub VIEW
 ```
@@ -126,7 +126,7 @@ ORDER BY
 	3 DESC 
 	);
 ```
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553959803390-1553959803394.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553959803390-1553959803394.png)
 
 ## 7.行列转换，按日期将浏览量汇总，存入statistics_temp VIEW
 ```
@@ -143,7 +143,7 @@ GROUP BY
 	1 
 	);
 ```
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553959839140-1553959839143.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553959839140-1553959839143.png)
 
 ## 8. 查询出总粉丝数，存入total_fans VIEW
 ```
@@ -161,7 +161,7 @@ GROUP BY
 	1 
 	);
 ```
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553959963909-1553959963914.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553959963909-1553959963914.png)
 
 ## 9. 查询出总浏览量，存入total_statistics VIEW
 ```
@@ -174,7 +174,7 @@ CREATE
 	
 ```
 
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553959982769-1553959982782.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553959982769-1553959982782.png)
 	
 ## 10. 更新粉丝表到matchData
 ```
@@ -239,7 +239,7 @@ ORDER BY
 	3 DESC;
 ```
 
-![title](https://raw.githubusercontent.com/huifeng09/GitNote-Images/master/gitnote/2019/03/30/1553960194588-1553960194591.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1553960194588-15539601945911.png)
 
 ## 15. `VIEW`
 `VIEW`视图是存放数据的一个接口，也可以说是虚拟的表。这些数据可以是从一个或几个基本表（或视图）的数据。也可以是用户自已定义的数据。其实视图里面不存放数据的，数据还是放在基本表里面，基本表里面的数据发生变动时，视图里面的数据随之变动。

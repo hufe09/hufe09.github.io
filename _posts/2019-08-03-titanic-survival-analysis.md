@@ -490,7 +490,7 @@ df.hist(figsize=(10, 8))
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.810vvgypw25.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.810vvgypw25.png)
 
 ### 数据清洗
 
@@ -515,7 +515,7 @@ df[df.Age.isnull()].hist(figsize=(10, 8))
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.afsg4onuncu.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.afsg4onuncu.png)
 
 Age列用均值填充空值
 
@@ -690,7 +690,7 @@ plt.legend()
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.ewyu0vut6k4.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.ewyu0vut6k4.png)
 
 票价越贵，幸存比例越高。
 
@@ -705,7 +705,7 @@ plt.legend()
 ```
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.422l1mkcphs.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.422l1mkcphs.png)
 
 小孩子比其他年龄段的生存机会更高，但除此之外，它们看起来并不太相关。
 
@@ -732,7 +732,7 @@ df.groupby('Pclass').Survived.mean().plot(kind="bar")
 ```
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.saoaufctdw.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.saoaufctdw.png)
 
 社会地位越高，越容易生存。
 
@@ -770,7 +770,7 @@ df.groupby('Sex').Survived.mean().plot(kind="bar")
 ```
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.o4zhh4pv9k.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.o4zhh4pv9k.png)
 
 
 ```python
@@ -810,7 +810,7 @@ df.groupby(['Pclass', 'Sex']).Survived.mean().plot(kind='bar')
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.ne7ng4reot8.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.ne7ng4reot8.png)
 
 很明显，即使你按等级汇总，女性比男性更容易幸存。因此，性别与生存之间似乎存在着非常强烈的联系。
 
@@ -829,7 +829,7 @@ plt.legend()
 ```
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.g5cwgn7iu95.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.g5cwgn7iu95.png)
 
 - 父母/孩子
 
@@ -843,7 +843,7 @@ plt.legend()
 ```
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.c30xnns8wa7.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.c30xnns8wa7.png)
 
 同行人数越少，越容易幸存下来。
 
@@ -886,7 +886,7 @@ plt.legend()
 ```
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.ohezcgzvgji.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.ohezcgzvgji.png)
 
 Cherbourg港口登船的乘客幸存的比死亡的多, Queenstown和Southampton港口死亡的多余幸存。
 
@@ -933,12 +933,12 @@ DecisionTreeClassifier(class_weight=None, criterion='entropy', max_depth=None,
 
 这里我们看到了很多参数，除了设置 criterion 采用不同的决策树算法外，一般建议使用默认的参数，默认参数不会限制决策树的最大深度，不限制叶子节点数，认为所有分类的权重都相等等。当然你也可以调整这些参数，来创建不同的决策树模型。
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.uuy8ytijo5t.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.uuy8ytijo5t.png)
 
 在构造决策树分类器后，我们可以使用 fit 方法让分类器进行拟合，使用 predict 方法对新数据进行预测，得到预测的分类结果，也可以使用 score 方法得到分类器的准确率。
 
 下面这个表格是 fit 方法、predict 方法和 score 方法的作用。
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.vdwwjd31zi.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.vdwwjd31zi.png)
 
 <a id='cart'></a>
 ## 如何使用 CART 算法来创建分类树
@@ -988,7 +988,7 @@ graph
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.39w0xoohai3.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.39w0xoohai31.png)
 
 <a id='decision_tree'></a>
 # 使用 ID3 算法进行Titanic 乘客生存预测
@@ -1725,7 +1725,7 @@ graph.render("titanic_id3")
 graph
 ```
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.958wwvai2iv.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.958wwvai2iv.png)
 [查看决策树图详情](https://hufe09.github.io/html/titanic_id3.pdf)
 
 ### 参考
@@ -1745,14 +1745,14 @@ graphviz
 查看文件详情（Windows，Linux通用命令）
 下载完成后，使用`dot -verison`命令，查询bin文件夹地址
 查看Graphviz的bin位置
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.s8yfd671h6k.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.s8yfd671h6k.png)
 Ubuntu环境下加入环境变量
 然后加入环境变量，`source /etc/profile` ,重启Jupyter Notebook使其生效。
 
 `export PATH=$PATH:/usr/lib/x86_64-linux-gnu/graphviz`
 此时错误已经解决。
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.ypizj18p5km.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.ypizj18p5km.png)
 
 
 

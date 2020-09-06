@@ -31,7 +31,7 @@ tags:
 - **RIGHT** 从末尾（或右侧）开始，从特定列中的每行获取一定数量的字符。正如此处看到的，你可以使用 **RIGHT(phone_number, 8)** 获取电话号码的最后 8 位。
 - **LENGTH** 提供了特定列每行的字符数。这里，我们可以使用 **LENGTH(phone_number)** 得出每个电话号码的长度。
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/image_hosting/image.va88a84ci.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.va88a84ci.png)
 
 ### LEFT & RIGHT Practice
 
@@ -116,7 +116,7 @@ FROM
 
 **STRPOS** 和 **POSITION** 提供的结果相同，但是语法不太一样，如下所示：**STRPOS(city_state, ‘,’)**。
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/image_hosting/image.krnf2b9uehh.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.krnf2b9uehh.png)
 
 > 注意，**POSITION** 和 **STRPOS** 都区分大小写，因此查找 **A** 的位置与查找 **a** 的结果不同。
 >
@@ -160,7 +160,7 @@ FROM
 	sales_reps;
 ```
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/image_hosting/image.nayu6cdoup8.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.nayu6cdoup8.png)
 
 
 
@@ -309,7 +309,7 @@ SELECT CONCAT(last_name, '.', first_name, '@', REPLACE(`name`, ' ', ''), '.com')
 FROM t1;
 ```
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/image_hosting/image.tnj2n2v7p5.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.tnj2n2v7p5.png)
 
 
 
@@ -346,7 +346,7 @@ FROM accounts;
 
 ### COALESCE Practice
 
- ![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/image_hosting/image.lu95g6xhof.png)
+ ![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.lu95g6xhof.png)
 
 1. 
 
@@ -466,7 +466,7 @@ LEFT JOIN orders o
 
 在此示例中，除了 **CAST(date_column AS DATE)** 之外，可以使用 **date_column::DATE**。
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/image_hosting/image.xsbkqwz9s9e.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.xsbkqwz9s9e.png)
 
 ### MySQL CAST
 

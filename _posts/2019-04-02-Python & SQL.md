@@ -731,7 +731,7 @@ print("最后一条数据的ID是:", insert_id)
 
 
 最后一条数据的ID是: 10066
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.rmqcd21upf.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.rmqcd21upf.png)
 
 插入多条数据时，`cursor.lastrowid`获取到的id是多语句的第一条
 

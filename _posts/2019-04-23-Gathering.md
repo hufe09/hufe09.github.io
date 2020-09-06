@@ -150,7 +150,7 @@ plt.scatter(df_bestofrt.number_of_critic_ratings, df_bestofrt.critic_score)
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.eukxdddmbnm.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.eukxdddmbnm.png)
 
 ### Python解析HTML文件
 
@@ -594,7 +594,7 @@ plt.scatter(df_html.audience_score, df_bestofrt.critic_score)
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.42dyimmm43v.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.42dyimmm43v.png)
 
 
 ```python
@@ -838,7 +838,7 @@ HTTP是请求/响应协议：
     GET是用于检索数据的HTTP请求方法（其中有多个）的名称。
 - Web服务器发回响应。如果请求有效：*“这是您要求的文件：”*，然后返回**1-the-wizard-of-oz-1939-film.txt**文件本身的内容。
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.zdbpufqrdul.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.zdbpufqrdul.png)
 
 
 ```python
@@ -1481,7 +1481,7 @@ create_word_cloud(review_text)
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.005h4j4qc242.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.005h4j4qc242.png)
 
 ## JSON文件结构
 JSON（Javascript Object Notation）顾名思义JavaScript对象标记而XML代表可延伸标记语言
@@ -1643,7 +1643,7 @@ i
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.xbfl72w4yi.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.xbfl72w4yi.png)
 
 
 ```python
@@ -1726,13 +1726,13 @@ for i in df_list:
 
 
 - Avengers: Endgame
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.69m3cvq008e.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.69m3cvq008e.png)
 
 - Wolf Warriors
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.9i0vxf8v2i.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.9i0vxf8v2i.png)
 
 - Spirited Away
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.51qz44eaukg.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.51qz44eaukg.png)
 
 ## Python & 关系数据库
 
@@ -1766,7 +1766,7 @@ MongoDB 是目前最流行的 NoSQL 数据库之一，使用的数据类型 BSON
 ## 数据获取手段：数据仓库(Data Warehouse)
 数据仓库，英文名称Data Warehouse，简写为DW。数据仓库顾名思义，是一个很大的数据存储集合，出于企业的分析性报告和决策支持目的而创建，对多样的业务数据进行筛选与整合。它为企业提供一定的BI（商业智能）能力，指导业务流程改进、监视时间、成本、质量以及控制。
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.smeetkbcv9.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.smeetkbcv9.png)
 
 数据仓库的输入方是各种各样的数据源，最终的输出用于企业的数据分析、数据挖掘、数据报表等方向。
 
@@ -1777,7 +1777,7 @@ ETL的英文全称是 Extract-Transform-Load 的缩写，用来描述将数据�
 - 1.Extract，数据抽取，也就是把数据从数据源读出来。
 - 2.Transform，数据转换，把原始数据转换成期望的格式和维度。如果用在数据仓库的场景下，Transform也包含数据清洗，清洗掉噪音数据。
 - 3.Load  数据加载，把处理后的数据加载到目标处，比如数据仓库。
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.k6hjxuxqynm.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.k6hjxuxqynm.png)
 
 在国内常用，是一款基于Hadoop的开源数据仓库，名叫**Hive**.
 

@@ -22,13 +22,13 @@ tags:
 
 通过浏览器开发者工具查看。
 
-![title](https://i.loli.net/2019/08/25/5KnJwfeDHvEOLxW.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/5KnJwfeDHvEOLxW.png)
 
 Request URL: https://www.toutiao.com/api/pc/feed/?max_behot_time=1566696918&category=__all__&utm_source=toutiao&widen=1&tadrequire=true&as=A1A5AD46B1EF5C6&cp=5D617F753C367E1&_signature=KanSeBAWdM.Bc.AFqJnbDCmp0m
 
 **将上面得到的链接打开，即可看到json格式的数据。**
 
-![title](https://i.loli.net/2019/08/25/OBngl8b7SQdoimU.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/OBngl8b7SQdoimU.png)
 
 ``` json
 {
@@ -199,7 +199,7 @@ json.loads(response.text)
 
 ## 2.1 用户代理
 
-![title](https://i.loli.net/2019/08/25/aQCN4RiKJXZGyLM.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/aQCN4RiKJXZGyLM.png)
 
 user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.19 Safari/537.36 Edg/77.0.235.9
 
@@ -596,4 +596,6 @@ df = pd.read_json("toutiao.json", lines=True)
 df.to_excel("toutiao.xlsx")
 ```
 
-![title](https://i.loli.net/2019/08/25/1ALUwlkR3nIQYHe.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1ALUwlkR3nIQYHe.png)
+
+Done.

@@ -244,7 +244,7 @@ df_clean.StartDate.value_counts()
 asap_list = ['Immediately', 'As soon as possible','Upon hiring', 'Immediate','Immediate employment', 'As soon as possible.', 'Immediate job opportunity']
 ```
 
-![title](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/gitnote/2019/04/21/1555851028920-1555851028946.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/1555851028920-1555851028946.png)
 
 ```python
 for phrase in asap_list:
@@ -442,7 +442,7 @@ df_clean.StartDate.value_counts().plot(kind= "pie", labels = labels)
 
 
 
-![title](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/gitnote/2019/04/21/output_33_1-1555850886784.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/output_33_1-1555850886784.png)
 
 ## 清洗前
 
@@ -475,7 +475,7 @@ df.StartDate.value_counts().plot(kind= "pie", labels = labels)
 
 
 
-![title](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/gitnote/2019/04/21/output_36_1-1555850922177.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/output_36_1-1555850922177.png)
 
 
 

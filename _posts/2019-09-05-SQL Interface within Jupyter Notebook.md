@@ -860,7 +860,7 @@ result.pie()
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/image_hosting/image.plp9nnqhjv.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.plp9nnqhjv.png)
 
 
 ## 使用 MySQL

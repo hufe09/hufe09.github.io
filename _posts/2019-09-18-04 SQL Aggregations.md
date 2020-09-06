@@ -703,7 +703,7 @@ ORDER BY 3 DESC;
 
 **DATE_PART** 可以用来获取日期的特定部分，但是注意获取 month 或 dow 意味着无法让年份按顺序排列。而是按照特定的部分分组，无论它们属于哪个年份。
 
-![title](https://i.loli.net/2019/08/19/ySVzsnrLOhuEJoc.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/ySVzsnrLOhuEJoc.png)
 
 要了解其他日期函数，请参阅[这篇](https://www.postgresql.org/docs/9.1/static/functions-datetime.html)文档，但是上面介绍的函数绝对够你入门了！
 

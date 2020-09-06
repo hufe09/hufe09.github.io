@@ -31,7 +31,7 @@ Parch & Posey 并不是个真实的公司，是我们捏造的 所有数据也�
 - 表配合工作的方式。
 
 你可以将下面的每个框看作一个电子表格。
-![title](https://i.loli.net/2019/08/17/NtaeC1mzfAdJBjW.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/NtaeC1mzfAdJBjW.png)
 
 
 注意事项
@@ -43,7 +43,7 @@ Parch & Posey 并不是个真实的公司，是我们捏造的 所有数据也�
 - sales_reps 
 - region 
 
-![title](https://i.loli.net/2019/08/17/Z1LaTqj9SMBpU4l.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/Z1LaTqj9SMBpU4l.png)
 
 你可以将每个表视为一个单独的电子表格。然后将每个电子表格中的列放在表名下面。例如，**region** 表有两列: id 和 name，而 **web_events** 表有四列。
 

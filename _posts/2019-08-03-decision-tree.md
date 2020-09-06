@@ -20,7 +20,7 @@ tags:
 
 决策树基本上就是把我们以前的经验总结出来。我给你准备了一个打篮球的训练集。如果我们要出门打篮球，一般会根据“天气”、“温度”、“湿度”、“刮风”这几个条件来判断，最后得到结果：去打篮球？还是不去？
 
-![img](https://static001.geekbang.org/resource/image/dc/90/dca4224b342894f12f54a9cb41d8cd90.jpg)
+![img](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/dca4224b342894f12f54a9cb41d8cd90.jpg)
 
 
 上面这个图就是一棵典型的决策树。我们在做决策树的时候，会经历两个阶段：**构造和剪枝**。
@@ -47,7 +47,7 @@ tags:
 
 欠拟合，和过拟合就好比是下面这张图中的第一个和第三个情况一样，训练的结果“太好“，反而在实际应用过程中会导致分类错误。
 
-![img](https://static001.geekbang.org/resource/image/d3/df/d30bfa3954ffdf5baf47ce53df9366df.jpg)
+![img](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/d30bfa3954ffdf5baf47ce53df9366df.jpg)
 
 造成过拟合的原因之一就是因为训练集中样本量较小。如果决策树选择的属性过多，构造出来的决策树一定能够“完美”地把训练集中的样本分类，但是这样就会把训练集中一些数据的特点当成所有数据的特点，但这个特点不一定是全部数据的特点，这就使得这个决策树在真实的数据分类中出现错误，也就是模型的“泛化能力”差。
 
@@ -71,7 +71,6 @@ tags:
 ### 信息熵（entropy）
 **它表示了信息的不确定度**。
 计算信息熵的数学公式：
-
 $$
 \text {Entropy}(t)=-\sum_{i=0}^{c-1} p(i | t) \log _{2} p(i | t)
 $$
@@ -99,7 +98,7 @@ $$
 \operatorname{Gain}(D, a)=\text { Entropy }(D)-\sum_{i=1}^{k} \frac{\left|D_{i}\right|}{|D|} \text { Entropy }\left(D_{i}\right)
 $$
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.m6prp9zof4l.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.m6prp9zof4l.png)
 
 $$
 \operatorname{Gain}(D, a)=\operatorname{Entropy}(D)-\left(\frac{3}{10} \operatorname{Entropy}\left(D_{1}\right)+\frac{7}{10} \operatorname{Entropy}\left(D_{2}\right)\right)
@@ -115,7 +114,7 @@ $$
 \operatorname{Ent}(D)=-\sum_{k=1}^{2} p_{k} \log _{2} p_{k}=-\left(\frac{3}{7} \log _{2} \frac{3}{7}+\frac{4}{7} \log _{2} \frac{4}{7}\right)=0.985
 $$
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/image.atas6ldmqt.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.atas6ldmqt.png)
 
 将天气作为属性的划分，会有三个叶子节点 D1、D2 和 D3，分别对应的是**晴天、阴天和小雨**。我们用 + 代表去打篮球，- 代表不去打篮球。那么第一条记录，晴天不去打篮球，可以记为 1-，于是我们可以用下面的方式来记录 D1，D2，D3：
 
@@ -231,7 +230,7 @@ $Enttopy(晴=高) = 1$
 
 
 可以看到**湿度**，或者**天气**为 D1(温度=高)的节点都可以得到最大的信息增益，这里我们选取湿度作为节点的属性划分。同理，我们可以按照上面的计算步骤得到完整的决策树，结果如下：
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.wbsafj8wp7.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.wbsafj8wp7.png)
 
 ## ID3 算法来给出好苹果的决策树
 ![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.2p6i3vjuxx5.png)
@@ -262,7 +261,7 @@ graph
 
 
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.022jw7kauv19.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.022jw7kauv19.png)
 
 # C4.5 算法
 **在 ID3 算法上进行改进的 C4.5 算法**
@@ -293,7 +292,7 @@ C4.5 可以处理连续属性的情况，对连续的属性进行离散化的处
 
 假如我们得到的是如下的数据，你会发现这个数据中存在两点问题。第一个问题是，数据集中存在数值缺失的情况，如何进行属性选择？第二个问题是，假设已经做了属性划分，但是样本在这个属性上有缺失值，该如何对样本进行划分？
 
-![img](https://static001.geekbang.org/resource/image/50/95/50b43c1820c03561f3ca3e627b454995.png)
+![img](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/50b43c1820c03561f3ca3e627b454995.png)
 
 我们不考虑缺失的数值，可以得到
 - 温度 D={2-,3+,4+,5-,6+,7-}。
@@ -326,7 +325,7 @@ $Gain\_ratio(D, 温度)=6/7*0.1426=0.122$
 
 C4.5 在 ID3 的基础上，用**信息增益率**代替了信息增益，解决了噪声敏感的问题，并且可以对构造树进行剪枝、处理连续数值以及数值缺失等情况，但是由于 C4.5 需要对数据集进行多次扫描，算法效率相对较低。
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.v3ky64ybr2f.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.v3ky64ybr2f.png)
 
 # CART算法
 
@@ -358,9 +357,8 @@ $p(Ck \| t)$ 表示节点 $t$ 属于类别 $Ck$ 的概率，节点 $t$ 的基尼
 
 针对集合 2，有一半人去打篮球，而另一半不去打篮球，所以， $p(C1 \| t)=0.5$ ， $p(C2 \| t)=0.5$ ，$G I N I(t)=1-(0.5 * 0.5+0.5 * 0.5)=0.5$
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.283agl734at.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.283agl734at.png)
 节点 D 的基尼系数等于子节点 D1 和 D2 的归一化基尼系数之和，用公式表示为：
-
 $$
 G I N I(D, A)=\frac{D_{1}}{D} G I M I\left(D_{1}\right)+\frac{D_{2}}{D} G I N I\left(D_{2}\right)
 $$
@@ -426,7 +424,7 @@ graph.render("iris_cart_classifier")
 graph
 ```
 
-![image](https://raw.githubusercontent.com/hufe09/GitNote-Images/master/Picee/image.39w0xoohai3.png)
+![image](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/image.39w0xoohai3.png)
 
 ## CART 回归树
 

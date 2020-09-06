@@ -15,7 +15,7 @@ tags:
 ## 打开幻灯片视图
 **View ->  Cell Toolbar -> Slideshow**
 
-![title](https://i.loli.net/2019/08/25/o1ZgHtAwR9Mx32z.png)
+![title](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/o1ZgHtAwR9Mx32z.png)
 
 ## 有下面几种显示形式
 - Slide
@@ -51,7 +51,7 @@ for i in range(1, 20):
     1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 
 
 ### 图片
-![post-bg-datas](https://hufe09.github.io/img/post-bg-datas.jpg)
+![post-bg-datas](https://gitee.com/hufe09/image_hosting/raw/master/PicGo/post-bg-datas.jpg)
 
 ## Skip
 Skip 不会显示在播放页面。
@@ -63,6 +63,5 @@ Notes 不会显示在播放页面。
 `$ cd the_path_of_this_notebook`
 
 `$ jupyter nbconvert jupyter_notebook_slide.ipynb --to slides --post serve`
-
 
 [jupyter_notebook_slide.slides.html](https://hufe09.github.io/html/jupyter_notebook_slide.slides.html)
